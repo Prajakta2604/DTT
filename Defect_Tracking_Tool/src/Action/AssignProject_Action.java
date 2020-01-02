@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import Bean.AssignProjectBean;
 import DAO.AddUserDao;
+import DAO.AssignProjectDao;
 
 /**
  * Servlet implementation class AssignProject_Action
@@ -38,15 +39,20 @@ public class AssignProject_Action extends HttpServlet {
 		// TODO Auto-generated method stub
 	
 		String UD_Id=request.getParameter("UD_id");
+		int id=Integer.parseInt(UD_Id);
 		String Select_Project=request.getParameter("project");
 		String Assign_User=request.getParameter("user");
 		System.out.println("printed");
 		
 		AssignProjectBean BeanObj=new AssignProjectBean();
-		//BeanObj.setUD_Id(UD_Id);
 		BeanObj.setSelect_Project(Select_Project);
 		BeanObj.setAssign_user(Assign_User);
-		doGet(request, response);
+		
+		
+
+		AssignProjectBean s=AssignProjectDao.getEmployeeById();
+		if(s>0)
+		response.sendRedirect("views/AssginProject1.jsp");
 		
 
 	}

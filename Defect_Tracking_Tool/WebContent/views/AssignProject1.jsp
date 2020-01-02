@@ -2,6 +2,8 @@
 <%@ page import="DAO.AssignProjectDao"%>
 <%@ page import="Bean.AssignProjectBean,java.util.List"%>
 <%@ page import="DAO.AssignProjectDao"%>
+<%@ page import="DAO.AddUserDao" %>
+<%@ page import="Bean.AddUserBean" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
@@ -148,30 +150,36 @@ legend.legend_border {
   </div>
 </div>
 									
-								
+							
   <div class="form-group row">
   <label for="UserName"class="col-md-4 text-right control-label col-form-label">Assign User:</label>
   <div class="col-md-6">
   <div class="input-group md-form form-sm form-2 pl-0">
- <select class="select2 form-control m-t-15 my-0 py-1 lime-border" multiple="multiple" style="height:36px;width:100%;">
+ <input class="form control my-0 py-1 lime-border"type="text" list="UserList" placeholder="Search"id="UserId" aria-label="Search">
+   <datalist id="UserList"> 
+    <%
+			List<AddUserBean> ls=AddUserDao.getUserDetail();
+			for(AddUserBean obj:ls)
+			{
+				String UserName=obj.getName();
+				%>
+				<option value="<%=obj.getName()%>"><%=obj.getName()%></option>
+				
+	
+				<%} %>
+				
+		</datalist>
+    
+    
+    </div>
+    
   
-	     
-          <optgroup label="Team Leader">
-             <option value="AK">Sudhir</option>
-          </optgroup>
-          <optgroup label="Developer">
-             <option value="CA">Prajakta</option>
-             <option value="NV">Snehal</option>
-             <option value="OR">Aarti</option>
-             <option value="WA">Dipali</option>
-           </optgroup>
-           <optgroup label="Tester">
-             <option value="AZ">Dattatraya</option>
-             <option value="CO">Pratibha</option>
-             <option value="ID">Vipul</option>
-             </optgroup>                            
-       </select>
-     
+    
+    
+    
+    
+    
+    
      </div>
   </div>
   </div>
@@ -202,30 +210,8 @@ legend.legend_border {
 				<th>Action</th>
 				</tr>
 			</thead>
-			<%
-			int i=0;
-			int pid=0;
-			List<AssignProjectBean> ls=AssignProjectDao.getUserDetail();
-			for(AssignProjectBean BeanObj:ls)
-			{
-				pid=BeanObj.getUD_Id();
-				%>
-				<tbody>
-				<tr>
-				<td><%=++i %></td>
-				<td><%=BeanObj.getRole() %></td>
-				<td><%=BeanObj.getName() %></td>
-				<td><%=BeanObj.getEmail() %></td>
-				<td>
-				<button class="btn btn-danger btn-xs mdi mdi-delete-forever" 
-				onclick="deleteUser(7);" type="button"
-				 data-target="#deleteModal" data-toggle="modal"></button>
-				
-				</td>
 			
-				</tr>
-				<%} %>
-				</tbody>
+			
 		
 		    </table>
 			</div>

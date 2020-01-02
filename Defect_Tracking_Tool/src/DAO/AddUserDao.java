@@ -57,7 +57,7 @@ public class AddUserDao
 		PreparedStatement ps;
 		try
 		{
-			ps = DbConnection.getConnection().prepareStatement("SELECT u.UD_Id ,s.Role , u.User_Name , u.Contact_Number  FROM user_details AS u INNER JOIN user_master AS s  ON u.UD_Id = s.UD_Id WHERE (u.Status=1 AND s.Status=1)");
+			ps = DbConnection.getConnection().prepareStatement("SELECT u.UD_Id ,s.Role , u.User_Name , u.Contact_Number, u.Email  FROM user_details AS u INNER JOIN user_master AS s  ON u.UD_Id = s.UD_Id WHERE (u.Status=1 AND s.Status=1)");
 			ResultSet rt = ps.executeQuery();
 			while(rt.next())
 			{
@@ -67,7 +67,7 @@ public class AddUserDao
 				a.setName(rt.getString(3));
 				System.out.println("name:"+rt.getString(1));
 				a.setContact(rt.getString(4));
-			//	a.setEmail(rt.getString(4));
+				a.setEmail(rt.getString(4));
 				ls.add(a);
 			}
 		} 
