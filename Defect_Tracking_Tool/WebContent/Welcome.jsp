@@ -25,6 +25,7 @@
 </style>
 </head>
 <body>
+	hi
 <div class="login-box">
 <img src="required/assets/images/avtar.png"class="avtar">
 <h1>Login </h1>
